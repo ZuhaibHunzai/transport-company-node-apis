@@ -14,11 +14,11 @@ module.exports = async (req, res, next) => {
     return res.status(400).json({ message: "Invalid payload format" });
   }
 
-  if (user.role !== "admin") {
-    return res.status(403).json({
-      message: "Unauthorized! Only admins are allowed to add vehicle data",
-    });
-  }
+  //   if (req.user.role !== "admin") {
+  //     return res.status(403).json({
+  //       message: "Unauthorized! Only admins are allowed to add vehicle data",
+  //     });
+  //   }
 
   try {
     const vehicle = new Vehicle({
