@@ -8,15 +8,16 @@ const Vehicle = model(
       required: true,
     },
     allowedDestinations: {
-      type: String,
+      type: [String],
       required: true,
     },
-    allowdPicupPoints: {
-      type: String,
+    allowedPickupPoints: {
+      type: [String],
       required: true,
     },
     prices: {
-      type: Number,
+      type: Map,
+      of: Number,
       required: true,
     },
   })
