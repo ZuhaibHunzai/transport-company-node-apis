@@ -1,31 +1,37 @@
 const Vehicle = require("../../models/vehicle/vehicle");
 
-module.exports = async (res, req, next) => {
-  const { vehicleName, allowedDestinations, allowdPicupPoints, prices } =
+module.exports = async (req, res, next) => {
+  const { vehicleName, allowedDestinations, allowedPickupPoints, prices } =
     req.body;
 
-  if (!vehicleName || !allowdPicupPoints || !allowedDestinations || !prices) {
-    return res.status(400).json({ message: "incomplete payload" });
+  if (
+    !vehicleName ||
+    !Array.isArray(allowedPickupPoints) ||
+    !Array.isArray(allowedDestinations) ||
+    typeof prices !== "object" ||
+    prices === null
+  ) {
+    return res.status(400).json({ message: "Invalid payload format" });
   }
 
-  if (user.role === "user") {
-    return res
-      .status(400)
-      .json({ message: "Unathorized! you are not allowed to add data" });
+  if (user.role !== "admin") {
+    return res.status(403).json({
+      message: "Unauthorized! Only admins are allowed to add vehicle data",
+    });
   }
-
-  const vehicle = new Vehicle({
-    vehicleName: vehicleName,
-    allowdPicupPoints: allowdPicupPoints,
-    allowedDestinations: allowedDestinations,
-    prices: prices,
-  });
-
-  await vehicle.save();
-  res.status(200).json(vehicle);
 
   try {
-  } catch (err) {
-    console.log(err);
+    const vehicle = new Vehicle({
+      vehicleName: vehicleName,
+      allowedPickupPoints: allowedPickupPoints,
+      allowedDestinations: allowedDestinations,
+      prices: prices,
+    });
+
+    await vehicle.save();
+    return res.status(201).json(vehicle);
+  } catch (error) {
+    console.error("Error adding vehicle:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 };
