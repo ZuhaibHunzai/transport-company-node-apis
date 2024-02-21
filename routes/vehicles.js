@@ -11,8 +11,8 @@ const {
 
 vehiclesRoute
   .post("/add", useAuth, addVehicle)
-  .delete("/delete", useAuth, deleteVehicle)
-  .post("/update", useAuth, updateVehicle)
+  .delete("/:id", useAuth, deleteVehicle)
+  .post("/:id", useAuth, updateVehicle)
   .get("/all", getAllVehicles)
   .get("/:id", getVehicleById);
 

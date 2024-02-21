@@ -1,10 +1,26 @@
 const Vehicle = require("../../models/vehicle/vehicle");
 
 module.exports = async (req, res, next) => {
-  const { vehicleName, vehicleModel, pickup, destination, price, perDayPrice } =
-    req.body;
+  const {
+    vehicleName,
+    vehicleModel,
+    pickup,
+    destination,
+    price,
+    perDayPrice,
+    numberOfPassengers,
+    luggagePerPassenger,
+  } = req.body;
 
-  if ((!vehicleName, !pickup, !destination, !price, !perDayPrice)) {
+  if (
+    !vehicleName ||
+    !pickup ||
+    !destination ||
+    !price ||
+    !perDayPrice ||
+    !numberOfPassengers ||
+    !luggagePerPassenger
+  ) {
     return res.status(400).json({ message: "Invalid payload format" });
   }
 
@@ -16,6 +32,8 @@ module.exports = async (req, res, next) => {
       destination: destination,
       price: price,
       perDayPrice: perDayPrice,
+      numberOfPassengers: numberOfPassengers,
+      luggagePerPassenger: luggagePerPassenger,
     });
 
     await vehicle.save();

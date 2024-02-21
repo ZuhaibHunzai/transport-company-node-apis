@@ -25,6 +25,14 @@ const vehicleAndPrices = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  numberOfPassengers: {
+    type: Number,
+    required: true,
+  },
+  luggagePerPassenger: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Vehicle", vehicleAndPrices);
