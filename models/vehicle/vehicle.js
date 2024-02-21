@@ -21,10 +21,6 @@ const vehicleAndPrices = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  perDayPrice: {
-    type: Number,
-    required: true,
-  },
   numberOfPassengers: {
     type: Number,
     required: true,
