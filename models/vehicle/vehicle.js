@@ -1,26 +1,30 @@
-const { model, Schema } = require("mongoose");
+const mongoose = require("mongoose");
 
-const Vehicle = model(
-  "Vehicle",
-  new Schema({
-    vehicleName: {
-      type: String,
-      required: true,
-    },
-    allowedDestinations: {
-      type: [String],
-      required: true,
-    },
-    allowedPickupPoints: {
-      type: [String],
-      required: true,
-    },
-    prices: {
-      type: Map,
-      of: Number,
-      required: true,
-    },
-  })
-);
+const vehicleAndPrices = new mongoose.Schema({
+  vehicleName: {
+    type: String,
+    required: true,
+  },
+  vehicleModel: {
+    type: String,
+    required: false,
+  },
+  pickup: {
+    type: String,
+    required: true,
+  },
+  destination: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  perDayPrice: {
+    type: Number,
+    required: true,
+  },
+});
 
-module.exports = Vehicle;
+module.exports = mongoose.model("Vehicle", vehicleAndPrices);

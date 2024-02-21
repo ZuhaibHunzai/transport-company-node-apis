@@ -1,31 +1,21 @@
 const Vehicle = require("../../models/vehicle/vehicle");
 
 module.exports = async (req, res, next) => {
-  const { vehicleName, allowedDestinations, allowedPickupPoints, prices } =
+  const { vehicleName, vehicleModel, pickup, destination, price, perDayPrice } =
     req.body;
 
-  if (
-    !vehicleName ||
-    !Array.isArray(allowedPickupPoints) ||
-    !Array.isArray(allowedDestinations) ||
-    typeof prices !== "object" ||
-    prices === null
-  ) {
+  if ((!vehicleName, !pickup, !destination, !price, !perDayPrice)) {
     return res.status(400).json({ message: "Invalid payload format" });
   }
-
-  //   if (req.user.role !== "admin") {
-  //     return res.status(403).json({
-  //       message: "Unauthorized! Only admins are allowed to add vehicle data",
-  //     });
-  //   }
 
   try {
     const vehicle = new Vehicle({
       vehicleName: vehicleName,
-      allowedPickupPoints: allowedPickupPoints,
-      allowedDestinations: allowedDestinations,
-      prices: prices,
+      vehicleModel: vehicleModel,
+      pickup: pickup,
+      destination: destination,
+      price: price,
+      perDayPrice: perDayPrice,
     });
 
     await vehicle.save();
