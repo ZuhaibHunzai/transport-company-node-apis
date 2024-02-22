@@ -33,6 +33,10 @@ const customPackage = mongoose.Schema({
     type: Number,
     required: true,
   },
+  pickup: {
+    type: String,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("CustomPackage", customPackage);
