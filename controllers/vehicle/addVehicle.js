@@ -7,7 +7,6 @@ module.exports = async (req, res, next) => {
     pickup,
     destination,
     price,
-    perDayPrice,
     numberOfPassengers,
     luggagePerPassenger,
   } = req.body;
@@ -17,7 +16,6 @@ module.exports = async (req, res, next) => {
     !pickup ||
     !destination ||
     !price ||
-    !perDayPrice ||
     !numberOfPassengers ||
     !luggagePerPassenger
   ) {
@@ -31,7 +29,6 @@ module.exports = async (req, res, next) => {
       pickup: pickup,
       destination: destination,
       price: price,
-      perDayPrice: perDayPrice,
       numberOfPassengers: numberOfPassengers,
       luggagePerPassenger: luggagePerPassenger,
     });
