@@ -1,6 +1,6 @@
-const PerDayVehicle = require("../models/perDayVehicle");
+const PerDayVehicle = require("../../models/perDayVehicle/perDayVehicle");
 
-exports.getAllPerDayVehicles = async (req, res) => {
+module.exports = async (req, res) => {
   try {
     const allPerDayVehicles = await PerDayVehicle.find();
 

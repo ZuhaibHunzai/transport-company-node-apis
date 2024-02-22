@@ -1,4 +1,4 @@
-const Vehicle = require("../../models/perDayVehicle/perDayVehicle");
+const PerDayVehicle = require("../../models/perDayVehicle/perDayVehicle");
 
 module.exports = async (req, res, next) => {
   const { id } = req.params;
@@ -11,24 +11,23 @@ module.exports = async (req, res, next) => {
   } = req.body;
 
   try {
-    const updatedVehiclePerDayVehicle = await Vehicle.findByIdAndUpdate(
+    const updatedVehicle = await PerDayVehicle.findByIdAndUpdate(
       id,
       {
         vehicleName: vehicleName,
         vehicleModel: vehicleModel,
-        pickup: pickup,
-        numberOfPassengers: destination,
-        luggagePerPassenger: luggagePerPassenger,
         perDayPrice: perDayPrice,
+        numberOfPassengers: numberOfPassengers,
+        luggagePerPassenger: luggagePerPassenger,
       },
       { new: true }
     );
 
-    if (!updatedVehiclePerDayVehicle) {
+    if (!updatedVehicle) {
       return res.status(404).json({ message: "Vehicle not found" });
     }
 
-    return res.status(200).json(updatedVehiclePerDayVehicle);
+    return res.status(200).json(updatedVehicle);
   } catch (error) {
     console.error("Error updating vehicle:", error);
     return res.status(500).json({ message: "Internal Server Error" });

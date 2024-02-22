@@ -1,39 +1,37 @@
 const PerDayVehicle = require("../../models/perDayVehicle/perDayVehicle");
 
-exports.addPerDayVehicle = async (req, res) => {
+module.exports = async (req, res, next) => {
+  const {
+    vehicleName,
+    vehicleModel,
+    perDayPrice,
+    numberOfPassengers,
+    luggagePerPassenger,
+  } = req.body;
+
+  if (
+    !vehicleName ||
+    !vehicleModel ||
+    !perDayPrice ||
+    !numberOfPassengers ||
+    !luggagePerPassenger
+  ) {
+    return res.status(400).json({ message: "Invalid payload format" });
+  }
+
   try {
-    const {
-      vehicleName,
-      perDayPrice,
-      numberOfPassengers,
-      luggagePerPassenger,
-    } = req.body;
-
-    if (
-      !vehicleName ||
-      !perDayPrice ||
-      !numberOfPassengers ||
-      !luggagePerPassenger
-    ) {
-      return res.status(400).json({ error: "Missing required fields" });
-    }
-
-    const newPerDayVehicle = new PerDayVehicle({
-      vehicleName,
-      vehicleModel,
-      perDayPrice,
-      numberOfPassengers,
-      luggagePerPassenger,
+    const perDayVehicle = new PerDayVehicle({
+      vehicleName: vehicleName,
+      vehicleModel: vehicleModel,
+      perDayPrice: perDayPrice,
+      numberOfPassengers: numberOfPassengers,
+      luggagePerPassenger: luggagePerPassenger,
     });
 
-    const perDayVehicle = await newPerDayVehicle.save();
-
-    res.status(201).json({
-      message: "PerDayVehicle added successfully",
-      perDayVehicle: perDayVehicle,
-    });
+    await perDayVehicle.save();
+    return res.status(201).json(perDayVehicle);
   } catch (error) {
-    console.error("Error adding PerDayVehicle:", error);
-    res.status(500).json({ error: "Failed to add PerDayVehicle" });
+    console.error("Error adding perDayVehicle:", error);
+    return res.status(500).json({ message: "Internal Server Error" });
   }
 };
