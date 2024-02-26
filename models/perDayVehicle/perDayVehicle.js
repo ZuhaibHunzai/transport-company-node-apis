@@ -9,6 +9,10 @@ const perDayVehicle = new mongoose.Schema({
     type: String,
     required: false,
   },
+  vehicleVarient: {
+    type: String,
+    required: false,
+  },
   perDayPrice: {
     type: Number,
     required: true,

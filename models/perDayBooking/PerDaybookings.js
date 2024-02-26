@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 
-const selectedBooking = new mongoose.Schema({
+const bookingStatus = ["Pending", "Confirmed", "In Progress", "Completed"];
+
+const perDayBooking = new mongoose.Schema({
   name: {
     type: String,
     required: true,
@@ -13,33 +15,35 @@ const selectedBooking = new mongoose.Schema({
     type: String,
     required: true,
   },
-  mobile: {
-    type: String,
-    required: true,
-  },
-  vehicle: {
-    type: String,
-    required: true,
-  },
-  date: {
-    type: Date,
+  phone: {
+    type: Number,
     required: true,
   },
   pickup: {
     type: String,
     required: true,
   },
-  destination: {
+  fromDate: {
+    type: Date,
+    required: true,
+  },
+  toDate: {
+    type: Date,
+    required: true,
+  },
+  vehicle: {
     type: String,
     required: true,
   },
-  price: {
+  perDayPrice: {
     type: Number,
     required: true,
   },
-  roundTrip: {
-    type: Boolean,
-    required: true,
+  Status: {
+    type: String,
+    enum: bookingStatus,
+    default: "Pending",
   },
 });
-module.exports = mongoose.model("SelectedBooking", selectedBooking);
+
+module.exports = mongoose.model("PerDayBooking", perDayBooking);
