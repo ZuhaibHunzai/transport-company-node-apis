@@ -9,8 +9,12 @@ const post = new mongoose.Schema({
     type: String,
     required: true,
   },
-  images: {
+  SliderImages: {
     type: File,
+    required: true,
+  },
+  bgImage: {
+    type: String,
     required: true,
   },
   date: {

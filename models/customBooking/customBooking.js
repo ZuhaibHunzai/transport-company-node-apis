@@ -1,5 +1,10 @@
 const mongoose = require("mongoose");
-
+const customPackageStatus = [
+  "Pending",
+  "Confirmed",
+  "In Progress",
+  "Completed",
+];
 const customPackage = mongoose.Schema({
   numberOfAdults: {
     type: Number,
@@ -13,17 +18,13 @@ const customPackage = mongoose.Schema({
     type: Date,
     required: true,
   },
-  totalExpectedTripDays: {
+  endDate: {
+    type: Date,
+    required: true,
+  },
+  numberofDays: {
     type: Number,
-    required: true,
-  },
-  customMessage: {
-    type: String,
-    required: true,
-  },
-  chooseVehicle: {
-    type: String,
-    required: true,
+    required: false,
   },
   needHotel: {
     type: Boolean,
@@ -36,6 +37,15 @@ const customPackage = mongoose.Schema({
   pickup: {
     type: String,
     required: true,
+  },
+  customMessage: {
+    type: String,
+    required: true,
+  },
+  status: {
+    type: String,
+    enum: customPackageStatus,
+    default: "Pending",
   },
 });
 

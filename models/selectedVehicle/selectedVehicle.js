@@ -9,6 +9,10 @@ const vehicleAndPrices = new mongoose.Schema({
     type: String,
     required: false,
   },
+  variant: {
+    type: String,
+    required: false,
+  },
   pickup: {
     type: String,
     required: true,
@@ -26,6 +30,22 @@ const vehicleAndPrices = new mongoose.Schema({
     required: true,
   },
   luggagePerPassenger: {
+    type: String,
+    required: true,
+  },
+  isRoundTrip: {
+    type: String,
+    required: true,
+  },
+  totalDistance: {
+    type: Number,
+    required: true,
+  },
+  expectedDriveTime: {
+    type: String,
+    required: true,
+  },
+  route: {
     type: String,
     required: true,
   },
