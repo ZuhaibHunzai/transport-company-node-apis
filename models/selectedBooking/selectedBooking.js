@@ -56,7 +56,7 @@ const selectedBooking = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: selectedBooking,
+    enum: selectedBookingStatus,
     default: "Pending",
   },
 });
