@@ -39,11 +39,11 @@ const selectedPlaceVehicle = new mongoose.Schema({
   },
   totalDistance: {
     type: Number,
-    required: true,
+    required: false,
   },
   expectedDriveTime: {
     type: String,
-    required: true,
+    required: false,
   },
   route: {
     type: String,
