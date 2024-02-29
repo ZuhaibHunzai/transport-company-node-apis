@@ -1,6 +1,6 @@
 const SelectedVehicle = require("../../models/selectedVehicle/selectedVehicle");
 
-const selectedVehicle = async (req, res, next) => {
+module.exports = async (req, res, next) => {
   const {
     vehicleName,
     vehicleModel,
@@ -18,16 +18,12 @@ const selectedVehicle = async (req, res, next) => {
   try {
     if (
       !vehicleName ||
-      !vehicleModel ||
-      !variant ||
       !pickup ||
       !destination ||
       !price ||
       !numberOfPassengers ||
       !luggagePerPassenger ||
       !isRoundTrip ||
-      !totalDistance ||
-      !expectedDriveTime ||
       !route
     ) {
       return res.status(403).json({ message: "invalid payload" });
@@ -51,6 +47,6 @@ const selectedVehicle = async (req, res, next) => {
     await newSelectedVehicle.save();
     return res.status(200).json(newSelectedVehicle);
   } catch (err) {
-    console.log(err, "error adding a selected vehicle");
+    return console.log("error adding a selected vehicle", err);
   }
 };
