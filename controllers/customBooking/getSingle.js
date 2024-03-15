@@ -1,4 +1,4 @@
-const CustomBooking = require("../../models/customBooking");
+const CustomBooking = require("../../models/customBooking/customBooking");
 
 module.exports = async (req, res, next) => {
   const { bookingId } = req.params;
