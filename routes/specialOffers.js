@@ -1,5 +1,4 @@
-const specialOffersRoutes = requre("express").Router();
-
+const specialOffersRoutes = require("express").Router();
 const useAuth = require("../middleware/useAuth");
 const {
   createSpecialOffer,
@@ -12,6 +11,8 @@ const {
 specialOffersRoutes
   .post("/add", useAuth, createSpecialOffer)
   .delete(":/id", useAuth, deleteSpecialOffer)
-  .get("/all", getAllSpecialOffers)
-  .get(":/id", getSingleSpecialOffer)
+  .get("/all", useAuth, getAllSpecialOffers)
+  .get(":/id", useAuth, getSingleSpecialOffer)
   .post("/update", useAuth, updateSpecialOffer);
+
+module.exports = specialOffersRoutes;

@@ -18,11 +18,11 @@ const specialOffers = new mongoose.Schema({
     required: true,
   },
   sliderImages: {
-    type: File,
+    type: Number,
     required: true,
   },
   banner: {
-    type: File,
+    type: Number,
     required: true,
   },
   days: {
