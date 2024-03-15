@@ -1,4 +1,4 @@
-const PerDayBooking = require("../../models/perDayBooking");
+const PerDayBooking = require("../../models/perDayBooking/PerDaybookings");
 
 module.exports = async (req, res, next) => {
   try {

@@ -1,4 +1,4 @@
-const SelectedBooking = require("../../models/selectedBooking");
+const SelectedBooking = require("../../models/selectedBooking/selectedBooking");
 
 module.exports = async (req, res, next) => {
   const { bookingId } = req.params;
