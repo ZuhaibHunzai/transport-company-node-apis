@@ -12,7 +12,7 @@ const customPackage = mongoose.Schema({
   },
   numberOfKids: {
     type: Number,
-    required: false,
+    required: true,
   },
   startDate: {
     type: Date,
