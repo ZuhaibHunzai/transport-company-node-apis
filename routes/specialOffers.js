@@ -11,8 +11,8 @@ const {
 specialOffersRoutes
   .post("/add", useAuth, createSpecialOffer)
   .delete(":/id", useAuth, deleteSpecialOffer)
-  .get("/all", useAuth, getAllSpecialOffers)
-  .get(":/id", useAuth, getSingleSpecialOffer)
+  .get("/all", getAllSpecialOffers)
+  .get(":/id", getSingleSpecialOffer)
   .post("/update", useAuth, updateSpecialOffer);
 
 module.exports = specialOffersRoutes;
